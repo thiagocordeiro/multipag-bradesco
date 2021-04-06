@@ -1,0 +1,38 @@
+{
+  "name": "thiagocordeiro/multipag-bradesco",
+  "description": "Bradesco Payments Integration (Multipag)\n\n",
+  "type": "library",
+  "license": "MIT",
+  "require": {
+    "php": ">=8.0"
+  },
+  "require-dev": {
+    "infection/infection": "^0.21",
+    "phpstan/phpstan": "^0.12",
+    "phpstan/phpstan-phpunit": "^0.12",
+    "phpunit/phpunit": "^9.5",
+    "slevomat/coding-standard": "^6.4",
+    "symfony/var-dumper": "^5.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Bradesco\\Multipag\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Test\\Bradesco\\Multipag\\": "tests/"
+    }
+  },
+  "scripts": {
+    "mutation": "vendor/bin/infection --configuration=infection.json --threads=6 --min-msi=100 --ansi",
+    "test:cs": "vendor/bin/phpcs --colors -ps",
+    "test:stan": "php -d memory_limit=-1 vendor/bin/phpstan analyse src --level=max --ansi",
+    "test:unit": "vendor/bin/phpunit --testdox --color=always",
+    "tests": [
+      "@test:cs",
+      "@test:stan",
+      "@test:unit"
+    ]
+  }
+}
